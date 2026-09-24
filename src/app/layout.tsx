@@ -8,10 +8,10 @@ const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans" 
 export const metadata: Metadata = {
   metadataBase: new URL("https://oguiachocolates.com"),
   title: { default: "O Guia Chocolates | Investor Portal", template: "%s | O Guia Chocolates" },
-  description: "A bean-to-bar chocolate company cultivating enduring value from Bahia, Brazil.",
+  description: "A bean-to-bar chocolate company cultivating enduring value from Brgy. Old Guia, Ma-ayon, Capiz.",
   alternates: { canonical: "/" },
-  openGraph: { type: "website", locale: "en_US", url: "/", siteName: "O Guia Chocolates", title: "O Guia Chocolates | Investor Portal", description: "Cultivating enduring value from Bahia, Brazil." },
-  twitter: { card: "summary_large_image", title: "O Guia Chocolates | Investor Portal", description: "Cultivating enduring value from Bahia, Brazil." },
+  openGraph: { type: "website", locale: "en_US", url: "/", siteName: "O Guia Chocolates", title: "O Guia Chocolates | Investor Portal", description: "Cultivating enduring value from Brgy. Old Guia, Ma-ayon, Capiz." },
+  twitter: { card: "summary_large_image", title: "O Guia Chocolates | Investor Portal", description: "Cultivating enduring value from Brgy. Old Guia, Ma-ayon, Capiz." },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
