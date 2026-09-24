@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme { --color-parchment: #fdfbf7; --color-cream: #f7f3eb; --color-cocoa: #241611; --color-canopy: #2d4a3e; --color-gold: #c5a059; --font-display: var(--font-display); --font-sans: var(--font-sans); }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #fdfbf7; color: #241611; font-family: var(--font-sans), Arial, sans-serif; }
+::selection { background: #c5a059; color: #241611; }
+:focus-visible { outline: 3px solid #c5a059; outline-offset: 3px; }
+.container { width: min(1440px, calc(100% - 2.5rem)); margin: auto; }
+@media (min-width: 768px) { .container { width: min(1440px, calc(100% - 4rem)); } }
+@media (min-width: 1024px) { .container { width: min(1440px, calc(100% - 6rem)); } }
+.eyebrow { color: #8e6d31; font-size: .7rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.display { font-family: var(--font-display), Georgia, serif; letter-spacing: -.04em; }
+.gold-rule { height: 1px; background: #c5a059; }
+.card { border: 1px solid #dfd4bd; border-radius: 16px; background: #fdfbf7; }
+.section { padding: 5.5rem 0; }
+.table-wrap { overflow-x: auto; border: 1px solid #dfd4bd; border-radius: 16px; }
+table { width: 100%; border-collapse: collapse; min-width: 650px; font-size: .82rem; }
+th { background: #f1eadc; color: #715b37; font-size: .67rem; letter-spacing: .1em; text-transform: uppercase; text-align: left; }
+th, td { padding: 1rem; border-bottom: 1px solid #e7ddca; } tr:last-child td { border-bottom: 0; }
+.num { font-variant-numeric: tabular-nums; }
