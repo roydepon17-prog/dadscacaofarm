@@ -1,4 +1,4 @@
-name: Publish uploaded image artifact
+name: Replace website background with uploaded image
 
 on:
   workflow_dispatch:
@@ -9,13 +9,8 @@ on:
         type: string
       artifact_name:
         description: "Artifact name containing the image file"
-        required: true
+        required: false
         default: "uploaded-image"
-        type: string
-      target_path:
-        description: "Repository path for the image, e.g. public/images/cacao-pods.jpg"
-        required: true
-        default: "public/images/uploaded-image.jpg"
         type: string
 
 permissions:
@@ -23,43 +18,59 @@ permissions:
   contents: write
 
 jobs:
-  publish-image:
+  replace-background:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download image artifact
+      - name: Download uploaded image artifact
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ inputs.artifact_run_id }}
           ARTIFACT_NAME: ${{ inputs.artifact_name }}
         run: |
+          set -euo pipefail
           mkdir -p /tmp/uploaded-image
-          gh run download "$RUN_ID"             --name "$ARTIFACT_NAME"             --dir /tmp/uploaded-image
+          gh run download "$RUN_ID" --name "$ARTIFACT_NAME" --dir /tmp/uploaded-image
 
-      - name: Locate uploaded image
-        id: image
-        env:
-          TARGET_PATH: ${{ inputs.target_path }}
+      - name: Replace website background
         run: |
           set -euo pipefail
           file="$(find /tmp/uploaded-image -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) | head -n 1)"
           if [ -z "$file" ]; then
-            echo "No supported image file found in artifact." >&2
+            echo "No supported image found in artifact." >&2
             exit 1
           fi
-          mkdir -p "$(dirname "$TARGET_PATH")"
-          cp "$file" "$TARGET_PATH"
-          echo "path=$TARGET_PATH" >> "$GITHUB_OUTPUT"
 
-      - name: Commit image to repository
-        env:
-          TARGET_PATH: ${{ steps.image.outputs.path }}
+          rm -f public/images/cacao-background.jpg public/images/cacao-background.jpeg public/images/cacao-background.png public/images/cacao-background.webp
+          mkdir -p public/images
+
+          case "$file" in
+            *.png|*.PNG) cp "$file" public/images/cacao-background.png ;;
+            *.webp|*.WEBP) cp "$file" public/images/cacao-background.webp ;;
+            *) cp "$file" public/images/cacao-background.jpg ;;
+          esac
+
+          # Keep the website source pointing at the stable background filename.
+          python - <<'PY'
+          from pathlib import Path
+          p = Path("src/app/page.tsx")
+          s = p.read_text()
+          import re
+          s = re.sub(r'/images/cacao-background\.(jpg|jpeg|png|webp)', '/images/cacao-background.jpg', s)
+          s = re.sub(r'/images/oguia-cacao-background\.jpg', '/images/cacao-background.jpg', s)
+          p.write_text(s)
+          PY
+
+      - name: Commit and push background
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$TARGET_PATH"
-          git diff --cached --quiet && exit 0
-          git commit -m "Add uploaded image"
+          git add public/images src/app/page.tsx
+          if git diff --cached --quiet; then
+            echo "No background changes to commit."
+            exit 0
+          fi
+          git commit -m "Replace website background image"
           git push
