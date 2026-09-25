@@ -43,14 +43,11 @@ jobs:
             exit 1
           fi
 
-          rm -f public/images/cacao-background.jpg public/images/cacao-background.jpeg public/images/cacao-background.png public/images/cacao-background.webp
           mkdir -p public/images
+          rm -f public/images/cacao-background.jpg
 
-          case "$file" in
-            *.png|*.PNG) cp "$file" public/images/cacao-background.png ;;
-            *.webp|*.WEBP) cp "$file" public/images/cacao-background.webp ;;
-            *) cp "$file" public/images/cacao-background.jpg ;;
-          esac
+          # Normalize every future upload to the same stable JPG path.
+          magick "$file" -auto-orient -strip -quality 82 public/images/cacao-background.jpg
 
           # Keep the website source pointing at the stable background filename.
           python - <<'PY'
