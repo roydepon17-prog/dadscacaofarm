@@ -1,19 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-display" });
-const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans" });
-
-export const metadata: Metadata = {
-  metadataBase: new URL("https://oguiachocolates.com"),
-  title: { default: "O Guia Chocolates | Investor Portal", template: "%s | O Guia Chocolates" },
-  description: "A bean-to-bar chocolate company cultivating enduring value from Brgy. Old Guia, Ma-ayon, Capiz.",
-  alternates: { canonical: "/" },
-  openGraph: { type: "website", locale: "en_US", url: "/", siteName: "O Guia Chocolates", title: "O Guia Chocolates | Investor Portal", description: "Cultivating enduring value from Brgy. Old Guia, Ma-ayon, Capiz." },
-  twitter: { card: "summary_large_image", title: "O Guia Chocolates | Investor Portal", description: "Cultivating enduring value from Brgy. Old Guia, Ma-ayon, Capiz." },
-};
-
-export default function RootLayout({ children }: LayoutProps<"/">) {
-  return <html lang="en" className={`${playfair.variable} ${jakarta.variable}`}><body>{children}</body></html>;
-}
+const playfair=Playfair_Display({subsets:["latin"],variable:"--font-display"});
+const jakarta=Plus_Jakarta_Sans({subsets:["latin"],variable:"--font-sans"});
+export const metadata:Metadata={metadataBase:new URL("https://oguiachocolates.com"),title:{default:"OGUIA Chocolates by DADs Farm | Philippine Bean-to-Bar Chocolate",template:"%s | OGUIA Chocolates"},description:"Discover OGUIA Chocolates by DADs Farm—farm-connected, bean-to-bar chocolate rooted in Old Guia, Ma-ayon, Capiz, Philippines.",keywords:["OGUIA Chocolates","DADs Farm","Philippine chocolate","bean-to-bar chocolate Philippines","Capiz cacao","Ma-ayon cacao","Filipino chocolate","dark chocolate Philippines","tablea Philippines","farm to bar chocolate"],alternates:{canonical:"/"},openGraph:{type:"website",locale:"en_PH",url:"/",siteName:"OGUIA Chocolates by DADs Farm",title:"OGUIA Chocolates | Chocolate rooted in the land of Capiz",description:"Farm-connected bean-to-bar chocolate from Old Guia, Ma-ayon, Capiz, Philippines.",images:[{url:"/images/cacao-beans-header.jpg",width:1200,height:630,alt:"Cacao beans from DADs Farm in Capiz"}]},twitter:{card:"summary_large_image",title:"OGUIA Chocolates | DADs Farm",description:"Farm-connected bean-to-bar chocolate from Capiz.",images:["/images/cacao-beans-header.jpg"]},robots:{index:true,follow:true}};
+export default function RootLayout({children}:LayoutProps<"/">){return <html lang="en"><body className={`${playfair.variable} ${jakarta.variable}`}>{children}</body></html>}
