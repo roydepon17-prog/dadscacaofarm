@@ -1,0 +1,805 @@
+<!DOCTYPE html><html class="dark scroll-smooth" lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><title>O'Guia Chocolates &amp; DAD's Farm | Single-Estate Terroir</title><link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>
+@layer base {
+  html, body { margin: 0; padding: 0; }
+  body { overscroll-behavior: none; }
+  main > :first-child { margin-top: 0 !important; }
+  main > :last-child { margin-bottom: 0 !important; }
+}
+::-webkit-scrollbar { display: none; }
+
+/* Custom Animations & Micro-Interactions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ambientGlow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.08); }
+}
+
+@keyframes heroBreathing {
+  0%, 100% { transform: scale(1.03); }
+  50% { transform: scale(1.07); }
+}
+
+@keyframes shimmerRibbon {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulseGold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(233, 195, 73, 0.45); }
+  50% { box-shadow: 0 0 0 8px rgba(233, 195, 73, 0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+.animate-shimmer-bar {
+  background: linear-gradient(90deg, #1e3a2b 0%, #2a523d 25%, #cca830 50%, #2a523d 75%, #1e3a2b 100%);
+  background-size: 200% 100%;
+  animation: shimmerRibbon 8s ease-in-out infinite;
+}
+
+.hero-bg-anim {
+  animation: heroBreathing 18s ease-in-out infinite alternate;
+}
+
+.ambient-glow-pulse {
+  animation: ambientGlow 7s ease-in-out infinite;
+}
+
+/* Luxury Product Card Hover Elevation */
+.luxury-card {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.45s ease;
+}
+.luxury-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 26px rgba(233, 195, 73, 0.16);
+  border-color: rgba(233, 195, 73, 0.5);
+}
+
+/* Nav Underline slide-in */
+.nav-link-anim {
+  position: relative;
+}
+.nav-link-anim::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #e9c349;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link-anim:hover::after {
+  width: 100%;
+}
+
+/* Tree-to-bar interactive cards */
+.process-card {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.process-card:hover {
+  transform: translateY(-6px);
+  background-color: #20201d;
+  box-shadow: 0 16px 32px -10px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(233, 195, 73, 0.35);
+}
+.process-card:hover .process-num {
+  color: #e9c349;
+  transform: scale(1.08) translateY(-2px);
+}
+.process-card:hover .process-icon-wrap {
+  transform: rotate(8deg) scale(1.1);
+  background-color: #2a523d;
+}
+
+/* Button Shimmer Fill Effect */
+.btn-luxury-shimmer {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s ease;
+}
+.btn-luxury-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(233, 195, 73, 0.25), transparent);
+  transition: left 0.65s ease;
+}
+.btn-luxury-shimmer:hover::before {
+  left: 100%;
+}
+
+/* Accordion smoothness */
+details summary::-webkit-details-marker {
+  display: none;
+}
+details[open] summary svg,
+details[open] summary .material-symbols-outlined {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"error":"#ffb4ab","surface-container":"#20201d","inverse-primary":"#486554","surface":"#131411","surface-container-high":"#2a2a27","on-secondary":"#422b22","tertiary-fixed-dim":"#e9c349","outline":"#8c928c","on-error":"#690005","surface-bright":"#3a3936","tertiary":"#e9c349","on-primary":"#1a3627","surface-dim":"#131411","primary":"#aeceb9","inverse-on-surface":"#31302d","secondary-fixed":"#ffdbce","error-container":"#93000a","tertiary-fixed":"#ffe088","on-error-container":"#ffdad6","surface-container-low":"#1c1c19","primary-fixed-dim":"#aeceb9","on-surface-variant":"#c2c8c2","background":"#131411","on-secondary-fixed-variant":"#5a4137","on-primary-fixed":"#042013","on-tertiary-container":"#4f3e00","on-tertiary-fixed":"#241a00","surface-container-lowest":"#0e0e0c","on-surface":"#e5e2dd","surface-container-highest":"#353532","inverse-surface":"#e5e2dd","surface-tint":"#aeceb9","on-secondary-fixed":"#2a170f","on-background":"#e5e2dd","on-tertiary-fixed-variant":"#574500","on-tertiary":"#3c2f00","secondary-fixed-dim":"#e3bfb2","on-primary-container":"#85a490","secondary":"#e3bfb2","primary-container":"#1e3a2b","on-primary-fixed-variant":"#304d3d","tertiary-container":"#cca830","outline-variant":"#424843","surface-variant":"#353532","primary-fixed":"#caead4","on-secondary-container":"#d4b1a4","secondary-container":"#5d4339"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-xl":"2.5rem","space-lg":"1.5rem","margin-mobile":"1.25rem","gutter":"1.5rem","space-sm":"0.5rem","space-xs":"0.25rem","space-md":"1rem","space-2xl":"4rem","margin":"3rem","gutter-mobile":"1rem"},fontFamily:{"headline-lg-mobile":["Bodoni Moda"],"body-lg":["Manrope"],"label-caps":["Manrope"],"headline-md":["Bodoni Moda"],"body-md":["Manrope"],"title-md":["Manrope"],"display-hero":["Bodoni Moda"],"headline-sm":["Bodoni Moda"],"display-hero-mobile":["Bodoni Moda"],"title-lg":["Manrope"],"label-md":["Manrope"],"headline-lg":["Bodoni Moda"],"body-sm":["Manrope"]},fontSize:{"headline-lg-mobile":["28px",{"lineHeight":"34px","letterSpacing":"0em","fontWeight":"500"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"label-caps":["11px",{"lineHeight":"16px","letterSpacing":"0.14em","fontWeight":"700"}],"headline-md":["28px",{"lineHeight":"36px","fontWeight":"500"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"display-hero":["56px",{"lineHeight":"64px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-sm":["22px",{"lineHeight":"28px","fontWeight":"600"}],"display-hero-mobile":["36px",{"lineHeight":"42px","letterSpacing":"-0.01em","fontWeight":"600"}],"title-lg":["20px",{"lineHeight":"28px","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"headline-lg":["40px",{"lineHeight":"48px","letterSpacing":"-0.015em","fontWeight":"500"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased min-h-screen selection:bg-tertiary selection:text-surface-container-lowest"><header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"><div class="animate-shimmer-bar text-on-primary-container py-space-xs px-margin text-center font-label-caps text-label-caps uppercase tracking-widest border-b border-primary/20 relative overflow-hidden"><span class="inline-flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-ping"></span>Single-Estate Philippine Terroir • Free Shipping Nationwide on Orders Over ₱1,500<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span></span></div><div class="h-20 bg-surface/90 backdrop-blur-md shadow-[0_12px_32px_-4px_rgba(0,0,0,0.6)] border-b border-outline-variant/20"><div class="max-w-7xl mx-auto h-full px-margin flex items-center justify-between"><a class="flex flex-col text-left group transition-transform duration-300 hover:scale-[1.02]" data-path="home" href="#"><span class="font-headline-md text-headline-md tracking-wider text-on-surface group-hover:text-primary transition-colors">O'GUIA</span><span class="font-label-caps text-label-caps tracking-[0.25em] text-tertiary -mt-1 group-hover:tracking-[0.3em] transition-all">&amp; DAD'S FARM • CAPIZ</span></a><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-title-md border-b border-tertiary pb-1"><a class="nav-link-anim font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors uppercase py-1" data-path="terroir-and-farm-story" href="#founders">Terroir &amp; Farm Story</a><a class="nav-link-anim font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors uppercase py-1" data-path="chocolate-collection" href="#collection">Chocolate Collection</a><a class="nav-link-anim font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors uppercase py-1" data-path="tree-to-bar-process" href="#tree-to-bar">Tree-to-Bar Process</a><a class="nav-link-anim font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors uppercase py-1" data-path="agroforestry-and-values" href="#agroforestry">Agroforestry &amp; Values</a><a class="nav-link-anim font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors uppercase py-1" data-path="faq-and-wholesale" href="#faq-wholesale">FAQ &amp; Wholesale</a></nav><div class="flex items-center gap-space-md"><a class="btn-luxury-shimmer inline-flex items-center justify-center px-space-md py-space-sm bg-primary-container text-on-surface border border-tertiary/40 rounded-DEFAULT font-label-caps text-label-caps tracking-widest uppercase hover:bg-surface-container-high hover:border-tertiary hover:text-tertiary hover:shadow-[0_0_20px_rgba(233,195,73,0.3)] transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] active:scale-95" data-path="inquire-and-order" href="#faq-wholesale">Inquire / Order Now</a><div class="flex items-center pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-tertiary/40 hover:ring-2 hover:ring-tertiary transition-all duration-300 cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUwu3uTOHUoht9Aj-21FrXDT0asEAG3w5pwLErti1coElYt2RYDwxZilrk90rOmRftyC12QrdR_GsPs01gWEgvkSMRPdJAFjkAtSzK-4qlEj316D5xRcKEzDua6CSY3fTcFW0lt3s48Zq765x_vfJJSZi-tVzB7f9GVvYZ7NZuJkfYCnLOD0VYdLZuvGTlqeEepFuGSWgXxFQkL88nb3b22FAUD7AgMjxb3C9UEQYc0BO0UwwBBarDfJrdLkM-lbPab_LavQ6lExKQb_o"></div></div></div></div></header><main class="w-full pt-20 bg-background"><div class="flex flex-col w-full text-on-surface">
+<!-- ========================================================================= -->
+<!-- 1. HERO SECTION: Panoramas, Coordinates, Estate Identity -->
+<!-- ========================================================================= -->
+<section class="relative w-full overflow-hidden bg-surface-container-lowest">
+<!-- Estate Panorama Hero Visual with Warm Ambient Halo -->
+<div class="relative w-full h-[88vh] min-h-[640px] max-h-[900px] overflow-hidden">
+<div class="hero-bg-anim absolute inset-0 bg-cover bg-center transition-transform duration-1000" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBNaiyWdZDeouYxB3_jJOO1VW6anj_xk1YlAOz3Wf0jdp4v4YFYGcZInukQkC_wB1Ie6dVUarqLO7VUhUqVpjHJGPXBxnmU1xpdm1oCfpcH27Bos9lXryZu6-UzchvEatlcKkpgXHpVgn1vxuDJA6IjicBL9t2VJKUPj9nWs5q4Ue3wxT7GBJ8KowzUkj-mnaCHLOAFY6JkVVB7BNddX3eRdow22BQa6Itpd4GyeTLrzqBvdCa3ekS-yah_zxucL8XyMKJmyJlD2UnpBQQ&quot;);">
+</div>
+<!-- Warm Ambient Floating Glow Behind Visual Elements -->
+<div class="absolute bottom-10 left-1/4 w-96 h-96 rounded-full bg-tertiary/15 blur-[120px] pointer-events-none ambient-glow-pulse"></div>
+<div class="absolute top-1/3 right-10 w-80 h-80 rounded-full bg-primary/10 blur-[100px] pointer-events-none ambient-glow-pulse" style="animation-delay: 2s;"></div>
+<!-- Atmospheric Gradients: Dark canopy depth & contrast scrim -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface/65 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest/95 via-surface-container-lowest/50 to-transparent"></div>
+<!-- Hero Content Foreground with Staggered Entrance Animations -->
+<div class="relative z-10 max-w-7xl mx-auto h-full px-margin flex flex-col justify-end pb-space-2xl">
+<div class="max-w-3xl flex flex-col gap-space-md">
+<!-- Origin Pill & Coordinates Badge -->
+<div class="flex flex-wrap items-center gap-space-sm opacity-0 animate-fade-in-up">
+<span class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-highest/85 backdrop-blur-md text-tertiary rounded-DEFAULT font-label-caps text-label-caps uppercase tracking-widest shadow-sm border border-tertiary/20 hover:border-tertiary/60 transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+              DAD'S FARM ESTATE • MAAYON
+            </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container/70 backdrop-blur-md text-on-surface-variant rounded-DEFAULT font-label-caps text-label-caps tracking-widest border border-outline-variant/30 hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[14px] text-primary">my_location</span>
+              11.3850° N, 122.7800° E — Capiz, PH
+            </span>
+</div>
+<!-- Main Headlines with smooth reveal -->
+<div class="opacity-0 animate-fade-in-up delay-100">
+<h1 class="font-display-hero text-display-hero text-on-surface tracking-tight leading-[1.08]"></h1><h1 class="font-serif text-3xl sm:text-5xl lg:text-[56px] text-[#e5e2dd] tracking-tight leading-[1.08] text-balance drop-shadow-lg" style="border-color: currentcolor; border-image: none; padding: 0px; font-size: 56px; font-family: &quot;Bodoni Moda&quot;, Georgia, serif; --tw-leading: 1.08; --tw-tracking: -.025em; letter-spacing: -1.4px; text-wrap: balance;">Artisanal Single-Origin Chocolate Rooted in the Soil of Maayon, Capiz</h1>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed opacity-0 animate-fade-in-up delay-200">
+            Crafted tree-to-bar from our sun-drenched organic agroforestry sanctuary at DAD's Farm. An authentic taste of Western Visayas terroir, nurtured beneath living canopies.
+          </p>
+<!-- CTAs & Micro Actions -->
+<div class="pt-space-sm flex flex-wrap items-center gap-space-md opacity-0 animate-fade-in-up delay-300">
+<a class="btn-luxury-shimmer inline-flex items-center justify-center px-space-lg py-space-sm bg-primary-container text-on-surface font-label-caps text-label-caps tracking-widest uppercase rounded-DEFAULT shadow-lg hover:bg-surface-container-high hover:text-tertiary hover:border hover:border-tertiary/50 hover:shadow-[0_0_24px_rgba(233,195,73,0.25)] transition-all duration-300 group" href="#collection">
+              Explore Collection
+              <span class="material-symbols-outlined ml-2 text-title-md group-hover:translate-x-1 transition-transform duration-300">arrow_forward</span>
+</a>
+<a class="btn-luxury-shimmer inline-flex items-center justify-center px-space-lg py-space-sm bg-surface-container-low/85 backdrop-blur-sm text-tertiary font-label-caps text-label-caps tracking-widest uppercase rounded-DEFAULT border border-tertiary/30 hover:border-tertiary hover:bg-surface-container-high transition-all duration-300 hover:shadow-md" href="#founders">
+              The DAD's Farm Story
+            </a>
+</div>
+<!-- Tasting & Origin Trust Indicators with tactile pulse accents -->
+<div class="pt-space-md grid grid-cols-2 sm:grid-cols-4 gap-space-xs opacity-0 animate-fade-in-up delay-400">
+<div class="p-space-xs px-space-sm bg-surface-container-low/80 backdrop-blur-sm rounded-DEFAULT flex items-center gap-2 border border-outline-variant/20 hover:border-primary/50 hover:bg-surface-container hover:scale-102 transition-all duration-300 cursor-default">
+<span class="material-symbols-outlined text-primary text-title-md">spa</span>
+<span class="font-label-caps text-label-caps text-on-surface tracking-wider">Single Estate</span>
+</div>
+<div class="p-space-xs px-space-sm bg-surface-container-low/80 backdrop-blur-sm rounded-DEFAULT flex items-center gap-2 border border-outline-variant/20 hover:border-tertiary/50 hover:bg-surface-container hover:scale-102 transition-all duration-300 cursor-default">
+<span class="material-symbols-outlined text-tertiary text-title-md">forest</span>
+<span class="font-label-caps text-label-caps text-on-surface tracking-wider">Agroforestry</span>
+</div>
+<div class="p-space-xs px-space-sm bg-surface-container-low/80 backdrop-blur-sm rounded-DEFAULT flex items-center gap-2 border border-outline-variant/20 hover:border-secondary/50 hover:bg-surface-container hover:scale-102 transition-all duration-300 cursor-default">
+<span class="material-symbols-outlined text-secondary text-title-md">handshake</span>
+<span class="font-label-caps text-label-caps text-on-surface tracking-wider">Tree-to-Bar</span>
+</div>
+<div class="p-space-xs px-space-sm bg-surface-container-low/80 backdrop-blur-sm rounded-DEFAULT flex items-center gap-2 border border-outline-variant/20 hover:border-primary-fixed-dim/50 hover:bg-surface-container hover:scale-102 transition-all duration-300 cursor-default">
+<span class="material-symbols-outlined text-primary-fixed-dim text-title-md">volunteer_activism</span>
+<span class="font-label-caps text-label-caps text-on-surface tracking-wider">Direct Empowerment</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 2. FOUNDERS' STORY & TERROIR: Asymmetric Editorial Layout -->
+<!-- ========================================================================= -->
+<section class="w-full bg-surface-container-low py-space-2xl relative" id="founders">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Left Column: Visual Tapestry & Real Founders Portrait -->
+<div class="lg:col-span-6 relative">
+<!-- Ambient Glow Circle -->
+<div class="absolute -top-12 -left-12 w-72 h-72 rounded-full bg-primary-container/40 blur-3xl pointer-events-none ambient-glow-pulse"></div>
+<!-- Primary Portrait Frame with gold accent framing and depth -->
+<div class="relative rounded-xl overflow-hidden shadow-2xl bg-surface-container border border-tertiary/20 hover:border-tertiary/50 transition-all duration-500 group">
+<img alt="Founders of O'Guia Chocolates and DAD's Farm smiling warmly beside lush cacao trees with ripe colorful pods in Maayon Capiz" class="w-full h-[520px] object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXQPF6wmEOI20gMMxq8cpn_0fDU8vxetMXIW7HXOxQr9XT8A-I3slHFTEjikXO4-D0cftMp5IAWxK4S7yCWUZffqtseaPghA5C4sT0-bypjLCSS7LHpfcZ36zr_NlD43qhihmIrGhWyTd0kk_BTn73fgFiI0ekDb6uhd5LnVQCpeA6YgdyB7bHsCBEetxVOb70iCrIXeLbsZbJh7jTGglZHYrIbosdDNy4-zg_ZcNkpUXvupb2_MlBH9c0GwO9sgTYKIM">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-85"></div>
+<div class="absolute bottom-space-md left-space-md right-space-md p-space-md bg-surface-container-highest/90 backdrop-blur-md rounded-lg shadow-md border border-tertiary/20 group-hover:border-tertiary/40 transition-colors">
+<p class="font-label-caps text-label-caps uppercase text-tertiary tracking-widest flex items-center gap-1.5"><span class="w-1 h-1 rounded-full bg-tertiary"></span> Maayon Estate Stewards</p>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-1">DAD's Farm Family</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">"Every pod is nourished by the biodiversity of our native Visayan soil, hand-selected at peak ripeness."</p>
+</div>
+</div>
+<!-- Secondary Overlapping Detail Card with hover elevation -->
+<div class="hidden sm:block absolute -bottom-8 -right-6 w-48 h-56 rounded-lg overflow-hidden shadow-2xl bg-surface-container-high ring-2 ring-tertiary/30 hover:ring-tertiary transition-all duration-500 hover:-translate-y-2 group cursor-pointer">
+<img alt="Cluster of vibrant orange, yellow, and green heirloom cacao pods growing directly on the shaded tree trunk" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9nHbzwaiPgfRmQUAQLxjlkCHI914qg1dbpVUhw1boC07RJGm2dCpW6KxPIZRzXQNEuIJHm9aM2t_sTB1GSpcQ3W-En-FB0bW7CNQnMNu451CX_eD-JgeTkFgmYvvm822bD8rW0xbk7V0YptdSjcZr7XfHj55vVxoxqkTLlpY1uLyvghaCobSzYmoiCMS6D5Bq704w4Cr0mBI1uLaALtZLS9QaUVgqarelB8dNZZVeFdKFb5IABZhlnYUYXYh4Qq2wVE848fiWWBxnM9M">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/30 to-transparent flex items-end p-2.5">
+<span class="font-label-caps text-label-caps text-primary text-[10px] tracking-widest uppercase">Heirloom Trinitario</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Narrative, Ethos & Metric Ribbon -->
+<div class="lg:col-span-6 flex flex-col gap-space-md">
+<div class="flex items-center gap-2">
+<span class="w-8 h-[2px] bg-tertiary"></span>
+<span class="font-label-caps text-label-caps uppercase text-tertiary tracking-[0.2em]">Terroir &amp; Provenance</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface leading-tight">
+            Nurtured Beneath the Canopy of Western Visayas
+          </h2>
+<div class="font-body-md text-body-md text-on-surface-variant flex flex-col gap-space-sm leading-relaxed">
+<p class="">
+              At DAD’s Farm in Maayon, Capiz, cacao is more than a harvest—it is an ecosystem. Our trees flourish beneath a polyculture canopy of native fruit trees, coconut palms, and rainforest flora. This biodiverse microclimate preserves soil vitality and imbues our beans with distinctive undertones of dried figs, subtle florals, and deep unadulterated cocoa liquor.
+            </p>
+<p class="">
+              By eliminating middlemen, O'Guia Chocolates directly empowers local farming families through dignified fair living wages, generational agricultural education, and sustainable regenerative agroforestry that guarantees the future of Philippine craft chocolate.
+            </p>
+</div>
+<!-- Pod Still Life Inset Card with hover micro-interaction -->
+<div class="p-space-md bg-surface-container rounded-lg flex items-center gap-space-md shadow-sm border border-outline-variant/30 hover:border-tertiary/40 hover:bg-surface-container-high transition-all duration-300 group">
+<div class="w-20 h-20 shrink-0 rounded-DEFAULT overflow-hidden border border-outline-variant/40">
+<img alt="Harvested freshly cut colorful cacao pods displaying internal seeds and pulpy richness" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvNF-za0AzAmpOMl1yVM_bQ_evpwMhuhsZKQ5OZax0ioEPqYjpvLxFqne2l9ToioqA_FGvTHl69PkKvkNJC7abEzEWMiC72cs_qU1fmRr648udGc90Pb8uiBdAaZb9lTkr7vj8JD2-KVgyuaCEYJOl79k8YjWUXJZTN_gwpZ7x9XFVyV1p5vW6nvoYPPC6A1pIsiqKbjROStlaRHV9cyWZa6BYFj3arVJS21eT08AuiINX3kE3u2nBjSg6NMlViOe9z0A">
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface group-hover:text-tertiary transition-colors">Artisanal Pod Grading</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Each harvest yields small batches sorted meticulously by pod maturity and varietal character.</p>
+</div>
+</div>
+<!-- High-Contrast Metric Counter Grid with glowing hover feedback -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-xs">
+<div class="p-space-sm bg-surface-container-high rounded-DEFAULT border border-transparent hover:border-tertiary/40 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+<p class="font-display-hero-mobile text-tertiary">100%</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mt-1">Organically Grown</p>
+</div>
+<div class="p-space-sm bg-surface-container-high rounded-DEFAULT border border-transparent hover:border-primary/40 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+<p class="font-display-hero-mobile text-primary">Direct</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mt-1">Impact Model</p>
+</div>
+<div class="p-space-sm bg-surface-container-high rounded-DEFAULT border border-transparent hover:border-secondary/40 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+<p class="font-display-hero-mobile text-secondary">Single</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mt-1">Origin Purity</p>
+</div>
+<div class="p-space-sm bg-surface-container-high rounded-DEFAULT border border-transparent hover:border-tertiary-fixed-dim/40 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+<p class="font-display-hero-mobile text-tertiary-fixed-dim">12+</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mt-1">Cacao Varieties</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 3. CURATED O'GUIA CHOCOLATE COLLECTION -->
+<!-- ========================================================================= -->
+<section class="w-full bg-surface py-space-2xl" id="collection">
+<div class="max-w-7xl mx-auto px-margin">
+<!-- Section Title & Filter Tabs -->
+<div class="flex flex-col md:flex-row md:items-end justify-between pb-space-lg gap-space-md">
+<div>
+<span class="font-label-caps text-label-caps text-tertiary uppercase tracking-widest">Maayon Micro-Batches</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">Curated Chocolate Collection</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Hand-tempered, slow-conched creations honoring the purity of Capiz cacao.</p>
+</div>
+<!-- Filter Pill Bar with tactile active indicator & hover feedback -->
+<div class="flex flex-wrap gap-2 bg-surface-container-low p-1.5 rounded-DEFAULT border border-outline-variant/20">
+<button class="px-space-md py-1 bg-primary-container text-tertiary font-label-caps text-label-caps uppercase rounded-DEFAULT shadow-sm border border-tertiary/30 transition-all duration-300 hover:brightness-110 active:scale-95" type="button">All Creations</button>
+<button class="px-space-md py-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-caps text-label-caps uppercase rounded-DEFAULT transition-all duration-300 active:scale-95" type="button">Single-Origin Bars</button>
+<button class="px-space-md py-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-caps text-label-caps uppercase rounded-DEFAULT transition-all duration-300 active:scale-95" type="button">Tablea &amp; Heritage</button>
+<button class="px-space-md py-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-caps text-label-caps uppercase rounded-DEFAULT transition-all duration-300 active:scale-95" type="button">Limited Editions</button>
+</div>
+</div>
+<!-- Product Cards Desktop Bento Mosaic (8 Authentic Items with Rich Elevation & Gold Borders) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<!-- 1: 70% Dark Chocolate Bar -->
+<div class="luxury-card group flex flex-col bg-surface-container rounded-xl overflow-hidden shadow-md border border-outline-variant/30">
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-highest">
+<img alt="O'Guia 70% Dark Chocolate Bar with cocoa beans and chocolate squares set on a woven rattan tray" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5xLWRlXG0-J7Yaac_P9A6OsgJ0-is6VMaRGyW74dfNqmWgZmEOiamCu2Kz4yCM-AL6elRxn87fEFp7537j1ne9EeZx9dpUJLM4kmqxOJSs_WBGul-to_0QX3EiNpPopZtnDCBZmFz-AoNaDgpwR1vBScrih6WEfzt_u--70VIRxFNDFkDhWu-XEgpEkjZUeYI6HHfsVigQBGw6RnAB_YWnh9mTxKwSRs5bIdBgdibPmcNuZI-2GrVo_sigpZIELG2bgY">
+<span class="absolute top-space-sm left-space-sm px-2.5 py-1 bg-surface-container-lowest/80 backdrop-blur-md text-tertiary font-label-caps text-label-caps rounded-DEFAULT uppercase border border-tertiary/20">
+              Signature Estate
+            </span>
+<span class="absolute bottom-space-sm right-space-sm px-2.5 py-0.5 bg-surface-container-highest/90 text-on-surface font-label-caps text-label-caps rounded-DEFAULT">
+              50 Grams
+            </span>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between gap-space-sm">
+<div>
+<div class="flex items-center justify-between text-tertiary">
+<span class="font-headline-sm text-headline-sm">70% Dark</span>
+<span class="font-title-md text-title-md font-bold text-tertiary group-hover:scale-105 transition-transform">₱170</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mt-1 group-hover:text-primary transition-colors">Single-Origin Dark Chocolate</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Tasting Notes: Sun-dried raisins, sugarcane molasses, bold toasted cacao backbone.
+              </p>
+</div>
+<button class="btn-luxury-shimmer w-full py-2.5 bg-surface-container-high hover:bg-primary-container text-on-surface hover:text-tertiary font-label-caps text-label-caps uppercase tracking-wider rounded-DEFAULT transition-all duration-300 border border-transparent hover:border-tertiary/40 active:scale-98 shadow-sm hover:shadow-[0_0_15px_rgba(233,195,73,0.2)]" type="button">
+              Acquire Micro-Batch
+            </button>
+</div>
+</div>
+<!-- 2: White Chocolate with Cacao Nibs -->
+<div class="luxury-card group flex flex-col bg-surface-container rounded-xl overflow-hidden shadow-md border border-outline-variant/30">
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-highest">
+<img alt="O'Guia White Chocolate infused with roasted crunchy cacao nibs displayed with origin packaging" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB_bmdh8IAsNWmWNPfpW35yNMyh47G5ninCBMwiCy71azdc9KIzpyKnQrTr_Qqzxa4jRvyfqvEo9mlumPQCMw8im2AsHjlSTjqQvt8fDtQPnd7KrWIQRXMvwTJx3kNkn1ldQlRzB7fXxVL-JWKsthznypzzlihIGnrn6WZjbx9kmV6sJlfMPMyK_5ngoQeoUfN_KQnUq6XX0Zd1OJ9CLGZ3846nr6Lh6Ya73W8uDwAh7noj_JdutwgvbtVnGbqkzVlM20">
+<span class="absolute top-space-sm left-space-sm px-2.5 py-1 bg-surface-container-lowest/80 backdrop-blur-md text-secondary font-label-caps text-label-caps rounded-DEFAULT uppercase border border-secondary/20">
+              Raw Cacao Butter
+            </span>
+<span class="absolute bottom-space-sm right-space-sm px-2.5 py-0.5 bg-surface-container-highest/90 text-on-surface font-label-caps text-label-caps rounded-DEFAULT">
+              50 Grams
+            </span>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between gap-space-sm">
+<div>
+<div class="flex items-center justify-between text-secondary">
+<span class="font-headline-sm text-headline-sm">White &amp; Nibs</span>
+<span class="font-title-md text-title-md font-bold text-secondary group-hover:scale-105 transition-transform">₱220</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mt-1 group-hover:text-secondary transition-colors">Single-Estate White Chocolate</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Tasting Notes: Pure pressed cacao butter, Madagascar vanilla, roasted nib snap.
+              </p>
+</div>
+<button class="btn-luxury-shimmer w-full py-2.5 bg-surface-container-high hover:bg-primary-container text-on-surface hover:text-secondary font-label-caps text-label-caps uppercase tracking-wider rounded-DEFAULT transition-all duration-300 border border-transparent hover:border-secondary/40 active:scale-98 shadow-sm hover:shadow-[0_0_15px_rgba(227,191,178,0.2)]" type="button">
+              Acquire Micro-Batch
+            </button>
+</div>
+</div>
+<!-- 3: Keto Sugar-Free Chocolate -->
+<div class="luxury-card group flex flex-col bg-surface-container rounded-xl overflow-hidden shadow-md border border-outline-variant/30">
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-highest">
+<img alt="O'Guia Keto Sugar Free chocolate bar formulated with pure Capiz cacao and erythritol" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGG5kR7mcZttdTyhAOug7pgBUba1j_iLvAxrXMoxlbqxTJmoip02Qde6WowXhSE1JE4TeXfvXDCbKAK5zHo3ya1b1_XbiPopyGMkKy23H_q0GkLL7V5JspuTyupUfEChlO4yTgu2bSyBu5Cw1iypZ5nUrjdDfmdy_lE_h9UhQeTCZsiRqFQFBQ_cLTAEcEVS9QeFKp-eDlZArqQIAqf6vYXaKQ5P0QPSRD85oKuG91F1pn5EGrUBovqTlm1kBHrp9uORg">
+<span class="absolute top-space-sm left-space-sm px-2.5 py-1 bg-surface-container-lowest/80 backdrop-blur-md text-primary font-label-caps text-label-caps rounded-DEFAULT uppercase border border-primary/20">
+              Zero Cane Sugar
+            </span>
+<span class="absolute bottom-space-sm right-space-sm px-2.5 py-0.5 bg-surface-container-highest/90 text-on-surface font-label-caps text-label-caps rounded-DEFAULT">
+              Keto Compliant
+            </span>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between gap-space-sm">
+<div>
+<div class="flex items-center justify-between text-primary">
+<span class="font-headline-sm text-headline-sm">Keto Pure</span>
+<span class="font-title-md text-title-md font-bold text-primary group-hover:scale-105 transition-transform">₱175</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mt-1 group-hover:text-primary transition-colors">Sugar-Free Dark Chocolate</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Tasting Notes: Earthy Visayan cacao depth, clean sweet finish without blood sugar spike.
+              </p>
+</div>
+<button class="btn-luxury-shimmer w-full py-2.5 bg-surface-container-high hover:bg-primary-container text-on-surface hover:text-primary font-label-caps text-label-caps uppercase tracking-wider rounded-DEFAULT transition-all duration-300 border border-transparent hover:border-primary/40 active:scale-98 shadow-sm hover:shadow-[0_0_15px_rgba(174,206,185,0.2)]" type="button">
+              Acquire Micro-Batch
+            </button>
+</div>
+</div>
+<!-- 4: 20% Coffee Chocolate Fusion -->
+<div class="luxury-card group flex flex-col bg-surface-container rounded-xl overflow-hidden shadow-md border border-outline-variant/30">
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-highest">
+<img alt="O'Guia 20% Coffee Chocolate Bar packaging celebrating highland coffee infused with cacao" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCanW6q4BnyuoN19LzhKL39pGKCMd0HY95myd1SxQDvg7kbngbiIhQ-KgghuhBe1jJZL7Qv3eY9lZPX6KXlpmIKfqgGvh0hRtD86RVdIBNgTsPC5KRhK8LlAGpDXNjzBqBu12kvTsY9_lARjsOD82EEysu1rZwtoUkbEL092U484SJFOJDak26qplhmjouG-lLGFL5He8_-6zhN7tOSs9tfAs9vmVbZhEll2a-avbg189bKOB_Yb97g8YW9Z2KyqoOz2ZI">
+<span class="absolute top-space-sm left-space-sm px-2.5 py-1 bg-surface-container-lowest/80 backdrop-blur-md text-tertiary-fixed-dim font-label-caps text-label-caps rounded-DEFAULT uppercase border border-tertiary-fixed-dim/20">
+              Robusta Infused
+            </span>
+<span class="absolute bottom-space-sm right-space-sm px-2.5 py-0.5 bg-surface-container-highest/90 text-on-surface font-label-caps text-label-caps rounded-DEFAULT">
+              50 Grams
+            </span>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between gap-space-sm">
+<div>
+<div class="flex items-center justify-between text-tertiary-fixed-dim">
+<span class="font-headline-sm text-headline-sm">Coffee Melange</span>
+<span class="font-title-md text-title-md font-bold text-tertiary-fixed-dim group-hover:scale-105 transition-transform">₱175</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mt-1 group-hover:text-tertiary transition-colors">20% Coffee Chocolate Bar</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Tasting Notes: Roasted native highland coffee beans folded into velvety creamy milk cacao.
+              </p>
+</div>
+<button class="btn-luxury-shimmer w-full py-2.5 bg-surface-container-high hover:bg-primary-container text-on-surface hover:text-tertiary-fixed-dim font-label-caps text-label-caps uppercase tracking-wider rounded-DEFAULT transition-all duration-300 border border-transparent hover:border-tertiary-fixed-dim/40 active:scale-98 shadow-sm hover:shadow-[0_0_15px_rgba(233,195,73,0.2)]" type="button">
+              Acquire Micro-Batch
+            </button>
+</div>
+</div>
+<!-- 5: Pure Cacao Tablea for Champorado -->
+<div class="luxury-card group flex flex-col bg-surface-container rounded-xl overflow-hidden shadow-md border border-outline-variant/30">
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-highest">
+<img alt="O'Guia Tablea pure cacao pouch paired with a steaming bowl of rolled oats champorado" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpEkXRVaIr6Kf7iVVmZ7Vvl2Xp0jvHQrapBsmYtNm-Q3C-oUoYiq8D-u033436wztRqPKr0c-lFCMcuskT_t-_mG2p0DzhBtf857cHwy_RmIXTKIgVlYI9_LjpGHjYfsiT_OHrWmGm3-oOqV7VSshy9faJQq8vA96enmWs9y2YDVaQsKUugZlyZuNT3Ble1VTC_jHyhZFzdzb0BgFCfnTRDYIVet6RGlPXkMXC7thj_niXbQLbYi0xsGLY6PPAtqwCPtE">
+<span class="absolute top-space-sm left-space-sm px-2.5 py-1 bg-surface-container-lowest/80 backdrop-blur-md text-tertiary font-label-caps text-label-caps rounded-DEFAULT uppercase border border-tertiary/20">
+              100% Pure Tablea
+            </span>
+<span class="absolute bottom-space-sm right-space-sm px-2.5 py-0.5 bg-surface-container-highest/90 text-on-surface font-label-caps text-label-caps rounded-DEFAULT">
+              Pouch 100g
+            </span>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between gap-space-sm">
+<div>
+<div class="flex items-center justify-between text-tertiary">
+<span class="font-headline-sm text-headline-sm">Ancestral Tablea</span>
+<span class="font-title-md text-title-md font-bold text-tertiary group-hover:scale-105 transition-transform">₱185</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mt-1 group-hover:text-primary transition-colors">Pure Tablea Rounds</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Culinary Focus: Heart-healthy hot sikwate and wholesome rolled oats champorado loaded with flavonoids.
+              </p>
+</div>
+<button class="btn-luxury-shimmer w-full py-2.5 bg-surface-container-high hover:bg-primary-container text-on-surface hover:text-tertiary font-label-caps text-label-caps uppercase tracking-wider rounded-DEFAULT transition-all duration-300 border border-transparent hover:border-tertiary/40 active:scale-98 shadow-sm hover:shadow-[0_0_15px_rgba(233,195,73,0.2)]" type="button">
+              Acquire Micro-Batch
+            </button>
+</div>
+</div>
+<!-- 6: O'Guia Ube Collaborations -->
+<div class="luxury-card group flex flex-col bg-surface-container rounded-xl overflow-hidden shadow-md border border-outline-variant/30">
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-highest">
+<img alt="O'Guia special edition chocolate bar celebrating local purple yam and creative youth collaboration" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLqsyjqIquEDLwieN9um9geKDH2oxXPmA1odiyhDpi7wRVRP3Fmwsk4vFB8SDM3BeCdPNO6-8A-IV8ljR5Udzdd7dUpfT4R5sjwDhfu5JNu_T22en-ILLZ4fxSjEa59ZTmyKftDiXd6H-E-20DVKAARLTyWn9UW_2puS2Fn84-4IVo3ceIhsNpdzUaXvJ6TNkaTmUk_sgHcRLrRqnWuiVSeP21ejbX_OJs5h8PFyEDaZcDn46Gr9c0DME3lGqOW3FX4G4">
+<span class="absolute top-space-sm left-space-sm px-2.5 py-1 bg-surface-container-lowest/80 backdrop-blur-md text-secondary-fixed font-label-caps text-label-caps rounded-DEFAULT uppercase border border-secondary-fixed/20">
+              Youth Creator Edition
+            </span>
+<span class="absolute bottom-space-sm right-space-sm px-2.5 py-0.5 bg-surface-container-highest/90 text-on-surface font-label-caps text-label-caps rounded-DEFAULT">
+              Limited
+            </span>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between gap-space-sm">
+<div>
+<div class="flex items-center justify-between text-secondary-fixed">
+<span class="font-headline-sm text-headline-sm">Capiz Ube Bar</span>
+<span class="font-title-md text-title-md font-bold text-secondary-fixed group-hover:scale-105 transition-transform">₱220</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mt-1 group-hover:text-secondary-fixed transition-colors">Fragrant Purple Yam &amp; Cacao</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Tasting Notes: Visayan purple yam aromatics blended with single-estate cocoa butter.
+              </p>
+</div>
+<button class="btn-luxury-shimmer w-full py-2.5 bg-surface-container-high hover:bg-primary-container text-on-surface hover:text-secondary-fixed font-label-caps text-label-caps uppercase tracking-wider rounded-DEFAULT transition-all duration-300 border border-transparent hover:border-secondary-fixed/40 active:scale-98 shadow-sm hover:shadow-[0_0_15px_rgba(255,219,206,0.2)]" type="button">
+              Acquire Micro-Batch
+            </button>
+</div>
+</div>
+<!-- 7: Luxury Artisan Stack Box -->
+<div class="luxury-card group flex flex-col bg-surface-container rounded-xl overflow-hidden shadow-md border border-outline-variant/30">
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-highest">
+<img alt="Stack of assorted O'Guia artisanal chocolate bars tied with elegant estate ribbon" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC25-wTmVdu5JpZw5H8DAGdM3DrmPbZM5iw3jbTI4j6xlT9DBuuarUZHhVBIa5TcxLmQSvid1k5n88JGklJaxkto46lell2VSfsO-BTdzfx0etbzTI9phb3y4WomcGs_nb73Nftp5ZDhj79mEsJruDGULdSR13kpxeZZCZcZtSTUmNOb8cdbc5WwMSOYhCvtgcQmyETHThSJJFVnuT8DwYU3FbP8JPHfbSGYyC0X6Il9ZEdwKLAk0oqsBhf5KbtJhDrbMKap-DjlnEoDmM">
+<span class="absolute top-space-sm left-space-sm px-2.5 py-1 bg-surface-container-lowest/80 backdrop-blur-md text-tertiary font-label-caps text-label-caps rounded-DEFAULT uppercase border border-tertiary/20">
+              Tasting Flight
+            </span>
+<span class="absolute bottom-space-sm right-space-sm px-2.5 py-0.5 bg-surface-container-highest/90 text-on-surface font-label-caps text-label-caps rounded-DEFAULT">
+              Bundle Set
+            </span>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between gap-space-sm">
+<div>
+<div class="flex items-center justify-between text-tertiary">
+<span class="font-headline-sm text-headline-sm">The Cellar Stack</span>
+<span class="font-title-md text-title-md font-bold text-tertiary group-hover:scale-105 transition-transform">₱1,250</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mt-1 group-hover:text-tertiary transition-colors">Artisan 5-Bar Terroir Vault</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Curated flight: 70% Dark, White Nibs, Coffee Infusion, Keto Pure, and Tablea disc.
+              </p>
+</div>
+<button class="btn-luxury-shimmer w-full py-2.5 bg-surface-container-high hover:bg-primary-container text-on-surface hover:text-tertiary font-label-caps text-label-caps uppercase tracking-wider rounded-DEFAULT transition-all duration-300 border border-transparent hover:border-tertiary/40 active:scale-98 shadow-sm hover:shadow-[0_0_15px_rgba(233,195,73,0.2)]" type="button">
+              Acquire Flight Box
+            </button>
+</div>
+</div>
+<!-- 8: Handcrafted Chocolate Confection Artistry -->
+<div class="luxury-card group flex flex-col bg-surface-container rounded-xl overflow-hidden shadow-md border border-outline-variant/30">
+<div class="relative w-full h-72 overflow-hidden bg-surface-container-highest">
+<img alt="Delicate artisanal chocolate bonbons and pralines hand-sculpted from DAD's Farm cacao" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUJbhhy6iMFvak94BaXG-5McNSkq7f8mA0Md9KgswZDDnKgNH34E9zWn0tDC7gXpykGkXRKj65eMJjwMhLLLL_BwYzrj6SmWRkoszUT6itmw4HqMIUxNJUlKN9HyAQ3jiHjkVXeFzaTD6Qd8n2PQ1Bt0UyDjOvhx_R4aZ-l4uCNy22nMaC1jbYj2KS05u0SiRWghdDs3ZRH5qx3OWsrpg2T5fsFS5tP22ETL_Oo_Jopytv4YW4Uc6PbYTO6glndGN9TbpoJ7CuhO3D98c">
+<span class="absolute top-space-sm left-space-sm px-2.5 py-1 bg-surface-container-lowest/80 backdrop-blur-md text-primary font-label-caps text-label-caps rounded-DEFAULT uppercase border border-primary/20">
+              Chocolatier Atelier
+            </span>
+<span class="absolute bottom-space-sm right-space-sm px-2.5 py-0.5 bg-surface-container-highest/90 text-on-surface font-label-caps text-label-caps rounded-DEFAULT">
+              Small Batch
+            </span>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between gap-space-sm">
+<div>
+<div class="flex items-center justify-between text-primary">
+<span class="font-headline-sm text-headline-sm">&nbsp; &nbsp;milk chocolate&nbsp;</span>
+<span class="font-title-md text-title-md font-bold text-primary group-hover:scale-105 transition-transform">₱175</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mt-1 group-hover:text-primary transition-colors"><br></h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Tasting Notes: Creamy single-estate milk chocolate with notes of rich caramel, subtle vanilla, and velvety roasted cacao.</p>
+</div>
+<button class="btn-luxury-shimmer w-full py-2.5 bg-surface-container-high hover:bg-primary-container text-on-surface hover:text-primary font-label-caps text-label-caps uppercase tracking-wider rounded-DEFAULT transition-all duration-300 border border-transparent hover:border-primary/40 active:scale-98 shadow-sm hover:shadow-[0_0_15px_rgba(174,206,185,0.2)]" type="button">
+              Acquire Selection
+            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 4. TREE-TO-BAR TIMELINE: 4-Step Horizontal Process -->
+<!-- ========================================================================= -->
+<section class="w-full bg-surface-container-lowest py-space-2xl relative" id="tree-to-bar">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="max-w-2xl pb-space-xl">
+<span class="font-label-caps text-label-caps uppercase text-tertiary tracking-widest flex items-center gap-2">
+<span class="w-6 h-[1px] bg-tertiary"></span> Uncompromising Technique
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">The Maayon Tree-to-Bar Rhythms</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+          From selective pod pluck to silk stone-conching, every transformation stage occurs within our Visayan sanctuary.
+        </p>
+</div>
+<!-- Connected Process Cards with Subtle Progress Line -->
+<div class="relative">
+<!-- Hidden connector bar for large displays -->
+<div class="hidden lg:block absolute top-12 left-12 right-12 h-[1px] border-t border-dashed border-outline-variant/40 -z-0 pointer-events-none"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md relative z-10">
+<!-- Step 1 -->
+<div class="process-card p-space-lg bg-surface-container-low rounded-lg relative overflow-hidden flex flex-col justify-between border border-outline-variant/20 group cursor-default">
+<span class="process-num font-display-hero text-surface-container-highest/60 select-none -mt-4 transition-all duration-300">01</span>
+<div class="mt-4">
+<div class="process-icon-wrap w-11 h-11 rounded-full bg-primary-container flex items-center justify-center text-primary mb-3 shadow-inner transition-all duration-300">
+<span class="material-symbols-outlined transition-transform duration-300">agriculture</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Sun-Dappled Canopy Harvest</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 leading-relaxed">
+              Hand-harvesting only fully ripe heirloom Criollo and Trinitario pods. Pods are cracked open the same morning to retain delicate natural yeasts.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs text-tertiary font-label-caps text-label-caps flex items-center gap-1.5 border-t border-outline-variant/20">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Harvest Window: Peak Mornings
+          </div>
+</div>
+<!-- Step 2 -->
+<div class="process-card p-space-lg bg-surface-container-low rounded-lg relative overflow-hidden flex flex-col justify-between border border-outline-variant/20 group cursor-default">
+<span class="process-num font-display-hero text-surface-container-highest/60 select-none -mt-4 transition-all duration-300">02</span>
+<div class="mt-4">
+<div class="process-icon-wrap w-11 h-11 rounded-full bg-primary-container flex items-center justify-center text-tertiary mb-3 shadow-inner transition-all duration-300">
+<span class="material-symbols-outlined transition-transform duration-300">thermostat</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-tertiary transition-colors">Aerated Wooden Fermentation</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 leading-relaxed">
+              Wet beans rest in tiered mahogany sweatboxes for 5 to 7 days, naturally converting pulp sugars into complex fruit, wine, and molasses aromas.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs text-tertiary font-label-caps text-label-caps flex items-center gap-1.5 border-t border-outline-variant/20">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Duration: 5-7 Days Monitored
+          </div>
+</div>
+<!-- Step 3 -->
+<div class="process-card p-space-lg bg-surface-container-low rounded-lg relative overflow-hidden flex flex-col justify-between border border-outline-variant/20 group cursor-default">
+<span class="process-num font-display-hero text-surface-container-highest/60 select-none -mt-4 transition-all duration-300">03</span>
+<div class="mt-4">
+<div class="process-icon-wrap w-11 h-11 rounded-full bg-primary-container flex items-center justify-center text-secondary mb-3 shadow-inner transition-all duration-300">
+<span class="material-symbols-outlined transition-transform duration-300">timelapse</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors">Micro-Batch Roasting &amp; Conching</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 leading-relaxed">
+              Low-temperature gentle drum roasting followed by up to 72 hours of granite stone-wheel conching to yield silky texture and round mouthfeel.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs text-tertiary font-label-caps text-label-caps flex items-center gap-1.5 border-t border-outline-variant/20">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Conching: 72 Hours Stone-Ground
+          </div>
+</div>
+<!-- Step 4 -->
+<div class="process-card p-space-lg bg-surface-container-low rounded-lg relative overflow-hidden flex flex-col justify-between border border-outline-variant/20 group cursor-default">
+<span class="process-num font-display-hero text-surface-container-highest/60 select-none -mt-4 transition-all duration-300">04</span>
+<div class="mt-4">
+<div class="process-icon-wrap w-11 h-11 rounded-full bg-primary-container flex items-center justify-center text-primary-fixed-dim mb-3 shadow-inner transition-all duration-300">
+<span class="material-symbols-outlined transition-transform duration-300">verified_user</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary-fixed-dim transition-colors">Artisan Tempering &amp; Wrapping</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 leading-relaxed">
+              Hand-poured into artisan molds with a crisp snap and mirror sheen, each bar is packaged in protective gold foil in Maayon, Capiz.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs text-tertiary font-label-caps text-label-caps flex items-center gap-1.5 border-t border-outline-variant/20">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Quality: Sealed Single Origin
+          </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 5. AGROFORESTRY COMMITMENT & BRAND VALUES -->
+<!-- ========================================================================= -->
+<section class="w-full bg-surface-container py-space-2xl" id="agroforestry">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="text-center max-w-3xl mx-auto pb-space-xl">
+<span class="font-label-caps text-label-caps uppercase text-tertiary tracking-widest">Regenerative Custodianship</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">Preserving The Capiz Biosphere</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+          We reject monoculture farming. DAD's Farm nurtures ancestral soil vitality through natural symbiosis, ecological care, and authentic village prosperity.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Value 1 -->
+<div class="p-space-xl bg-surface-container-low rounded-xl shadow-sm flex flex-col items-start gap-space-sm hover:-translate-y-2 hover:shadow-[0_20px_35px_rgba(0,0,0,0.5)] border border-outline-variant/20 hover:border-primary/40 transition-all duration-300 group cursor-default">
+<div class="p-space-sm bg-primary-container text-primary rounded-lg group-hover:scale-110 group-hover:bg-primary-container/90 transition-all duration-300">
+<span class="material-symbols-outlined text-headline-sm">eco</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Regenerative Canopy Harmony</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Intercropped with wild bananas, marang, coconut palms, and rainforest hardwoods that host native pollinator species and nourish deep organic soil beds naturally.
+          </p>
+<div class="flex items-center gap-2 pt-2 text-primary font-label-caps text-label-caps">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            Zero Chemical Pesticides
+          </div>
+</div>
+<!-- Value 2 -->
+<div class="p-space-xl bg-surface-container-low rounded-xl shadow-sm flex flex-col items-start gap-space-sm hover:-translate-y-2 hover:shadow-[0_20px_35px_rgba(0,0,0,0.5)] border border-outline-variant/20 hover:border-tertiary/40 transition-all duration-300 group cursor-default">
+<div class="p-space-sm bg-primary-container text-tertiary rounded-lg group-hover:scale-110 group-hover:bg-primary-container/90 transition-all duration-300">
+<span class="material-symbols-outlined text-headline-sm">diversity_1</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-tertiary transition-colors">Direct Visayan Empowerment</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Fostering long-term prosperity through dignified living wages, year-round harvest compensation, and mentorship programs for aspiring youth agriculturalists and chocolatiers.
+          </p>
+<div class="flex items-center gap-2 pt-2 text-tertiary font-label-caps text-label-caps">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+            100% Direct Farmer Guild
+          </div>
+</div>
+<!-- Value 3 -->
+<div class="p-space-xl bg-surface-container-low rounded-xl shadow-sm flex flex-col items-start gap-space-sm hover:-translate-y-2 hover:shadow-[0_20px_35px_rgba(0,0,0,0.5)] border border-outline-variant/20 hover:border-secondary/40 transition-all duration-300 group cursor-default">
+<div class="p-space-sm bg-primary-container text-secondary rounded-lg group-hover:scale-110 group-hover:bg-primary-container/90 transition-all duration-300">
+<span class="material-symbols-outlined text-headline-sm">clean_hands</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors">Pure Unadulterated Ingredients</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Pure estate cacao liquor and precious natural cacao butter. No hydrogenated palm oils, no soy lecithin fillers, and no synthetic vanilla flavoring—ever.
+          </p>
+<div class="flex items-center gap-2 pt-2 text-secondary font-label-caps text-label-caps">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+            Uncompromised Craft Standard
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 6. FAQ & WHOLESALE INQUIRIES: Desktop 2-Column Split -->
+<!-- ========================================================================= -->
+<section class="w-full bg-surface-container-low py-space-2xl" id="faq-wholesale">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+<!-- Left Column: Connoisseur FAQ Accordion -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div>
+<span class="font-label-caps text-label-caps uppercase text-tertiary tracking-widest flex items-center gap-2">
+<span class="w-6 h-[1px] bg-tertiary"></span> Connoisseur Guidance
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">Frequently Inquired</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Traceability, national dispatch logistics, and optimal storage parameters.</p>
+</div>
+<!-- FAQ Accordions with Smooth Animated Open States -->
+<div class="flex flex-col gap-space-xs mt-2" id="faq-accordion">
+<details class="group bg-surface-container rounded-DEFAULT p-space-md open:bg-surface-container-high transition-all duration-300 border border-outline-variant/20 hover:border-tertiary/30 cursor-pointer">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-tertiary transition-colors">How is chocolate dispatched nationwide without melting?</span>
+<span class="material-symbols-outlined text-tertiary transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed border-t border-outline-variant/20 pt-space-xs">
+                All provincial orders (Metro Manila, Cebu, Davao, and Luzon) are packaged within insulated thermal wrappers with chilled gel packs and dispatched via air-express priority courier. We ship Monday through Wednesday to avoid weekend warehouse transit halts.
+              </p>
+</details>
+<details class="group bg-surface-container rounded-DEFAULT p-space-md open:bg-surface-container-high transition-all duration-300 border border-outline-variant/20 hover:border-tertiary/30 cursor-pointer">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-tertiary transition-colors">What is the recommended storage temperature for O'Guia bars?</span>
+<span class="material-symbols-outlined text-tertiary transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed border-t border-outline-variant/20 pt-space-xs">
+                To preserve the delicate crystalline cocoa butter structure, store your bars between 18°C and 20°C in a dry, odorless setting. If refrigerating in tropical warmth, keep tightly sealed in airtight wrapping and let rest at room temperature for 15 minutes before tasting.
+              </p>
+</details>
+<details class="group bg-surface-container rounded-DEFAULT p-space-md open:bg-surface-container-high transition-all duration-300 border border-outline-variant/20 hover:border-tertiary/30 cursor-pointer">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-tertiary transition-colors">Is the Keto Dark Chocolate truly zero-sugar and diabetic-friendly?</span>
+<span class="material-symbols-outlined text-tertiary transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed border-t border-outline-variant/20 pt-space-xs">
+                Yes. Our Keto bar contains 0g refined cane sugar, relying exclusively on premium non-GMO erythritol and high natural fiber content from Maayon cacao nibs, ensuring an ultra-low glycemic response with zero insulin surge.
+              </p>
+</details>
+<details class="group bg-surface-container rounded-DEFAULT p-space-md open:bg-surface-container-high transition-all duration-300 border border-outline-variant/20 hover:border-tertiary/30 cursor-pointer">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-tertiary transition-colors">How do I prepare the pure O'Guia Tablea for Rolled Oats Champorado?</span>
+<span class="material-symbols-outlined text-tertiary transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed border-t border-outline-variant/20 pt-space-xs">
+                Boil 2 cups of fresh water with 2-3 rounds of O'Guia Tablea until fully dissolved and aromatic. Whisk vigorously, stir in 1 cup of whole rolled oats, and simmer for 8 minutes. Finish with coconut nectar or muscovado, drizzled with evaporada or almond milk.
+              </p>
+</details>
+<details class="group bg-surface-container rounded-DEFAULT p-space-md open:bg-surface-container-high transition-all duration-300 border border-outline-variant/20 hover:border-tertiary/30 cursor-pointer">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-tertiary transition-colors">What are lead times for bespoke corporate gifting and weddings?</span>
+<span class="material-symbols-outlined text-tertiary transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm leading-relaxed border-t border-outline-variant/20 pt-space-xs">
+                Custom branded sleeve bands, bespoke bonbon flights, and harvest gift crates require 2 to 3 weeks advance allocation depending on micro-batch cellar availability and batch conching timelines.
+              </p>
+</details>
+</div>
+<!-- Location Indicator Badge with warm glow -->
+<div class="mt-space-sm p-space-md bg-surface-container rounded-lg flex items-center gap-space-md border border-outline-variant/20 hover:border-tertiary/40 transition-colors">
+<span class="material-symbols-outlined text-tertiary text-headline-sm">pin_drop</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface">DAD's Farm Estate Cellar &amp; Roastery</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Barangay Manluran, Maayon, Capiz 5811 • Western Visayas, Philippines</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Wholesale & Corporate Concierge Form with Smooth Ring Focus States -->
+<div class="lg:col-span-5">
+<div class="p-space-xl bg-surface-container rounded-xl shadow-xl flex flex-col gap-space-md border border-tertiary/20 hover:border-tertiary/40 transition-colors">
+<div>
+<span class="font-label-caps text-label-caps uppercase text-tertiary tracking-widest">Culinary &amp; Corporate Desk</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">Wholesale Allocation Inquiries</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Partner with O'Guia Chocolates for specialty coffee shops, luxury resorts, Michelin-starred pastry kitchens, and corporate allocations.
+              </p>
+</div>
+<form class="flex flex-col gap-space-sm" onsubmit="event.preventDefault(); alert('Inquiry received. The Maayon estate team will contact your team within 24 hours.');">
+<div>
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-1 block">Full Name / Lead Sommelier</label>
+<input class="w-full px-space-md py-space-sm bg-surface-container-low rounded-DEFAULT text-on-surface font-body-sm placeholder:text-outline border border-outline-variant/30 focus:outline-none focus:border-tertiary focus:ring-1 focus:ring-tertiary focus:bg-surface-container-highest transition-all" placeholder="e.g. Chef Rafael Gonzaga" required="" type="text">
+</div>
+<div>
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-1 block">Corporate Email / Establishment</label>
+<input class="w-full px-space-md py-space-sm bg-surface-container-low rounded-DEFAULT text-on-surface font-body-sm placeholder:text-outline border border-outline-variant/30 focus:outline-none focus:border-tertiary focus:ring-1 focus:ring-tertiary focus:bg-surface-container-highest transition-all" placeholder="e.g. pastry@boutique-resort.ph" required="" type="email">
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div>
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-1 block">Desired Allocation</label>
+<select class="w-full px-space-md py-space-sm bg-surface-container-low rounded-DEFAULT text-on-surface font-body-sm border border-outline-variant/30 focus:outline-none focus:border-tertiary focus:ring-1 focus:ring-tertiary focus:bg-surface-container-highest transition-all">
+<option>5kg – 20kg (Bakery / Cafe)</option>
+<option>20kg – 100kg (Wholesale)</option>
+<option>50+ Corporate Flights</option>
+<option>Private Label Batch</option>
+</select>
+</div>
+<div>
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-1 block">Target Date</label>
+<input class="w-full px-space-md py-space-sm bg-surface-container-low rounded-DEFAULT text-on-surface font-body-sm border border-outline-variant/30 focus:outline-none focus:border-tertiary focus:ring-1 focus:ring-tertiary focus:bg-surface-container-highest transition-all" type="date">
+</div>
+</div>
+<div>
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-1 block">Tasting Notes or Custom Requirements</label>
+<textarea class="w-full px-space-md py-space-sm bg-surface-container-low rounded-DEFAULT text-on-surface font-body-sm placeholder:text-outline border border-outline-variant/30 focus:outline-none focus:border-tertiary focus:ring-1 focus:ring-tertiary focus:bg-surface-container-highest transition-all" placeholder="Tell us about your culinary menu, seasonal gift hampers, or desired tablea batch volumes..." rows="3"></textarea>
+</div>
+<button class="btn-luxury-shimmer w-full py-space-sm px-space-md bg-primary-container text-on-surface font-label-caps text-label-caps tracking-widest uppercase rounded-DEFAULT shadow-md hover:bg-surface-container-high hover:text-tertiary hover:border hover:border-tertiary/40 hover:shadow-[0_0_20px_rgba(233,195,73,0.3)] transition-all duration-300 mt-2 active:scale-98" type="submit">
+                Dispatch Wholesale Inquiry
+              </button>
+</form>
+<div class="pt-space-xs flex items-center justify-between font-label-caps text-label-caps text-on-surface-variant">
+<span class="">Hotline: +63 (036) 621-0000</span>
+<span class="">concierge@oguiatablea.com</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant/30 pt-space-2xl pb-space-xl"><div class="max-w-7xl mx-auto px-margin"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl pb-space-2xl border-b border-outline-variant/20"><div class="flex flex-col space-y-space-md"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-wide">O'GUIA CHOCOLATES</span><span class="font-label-caps text-label-caps text-tertiary tracking-widest mt-space-xs">DAD'S FARM ESTATE</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Single-estate heirloom Criollo &amp; Trinitario cacao nurtured within ancestral Visayan agroforestry terroir. Dedicated to direct-trade transparency and authentic Philippine tree-to-bar luxury confectionery.</p><div class="flex items-center space-x-space-sm pt-space-xs"><span class="material-symbols-outlined text-tertiary text-title-md">location_on</span><span class="font-body-sm text-body-sm text-on-surface-variant">Maayon, Capiz 5811, Philippines</span></div></div><div class="flex flex-col space-y-space-md"><span class="font-label-caps text-label-caps uppercase text-tertiary tracking-widest">Terroir Navigation</span><nav class="flex flex-col space-y-space-sm"><a class="nav-link-anim w-fit font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="terroir-and-farm-story" href="#founders">Terroir &amp; Farm Story</a><a class="nav-link-anim w-fit font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="chocolate-collection" href="#collection">Single-Estate Chocolate Collection</a><a class="nav-link-anim w-fit font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="tree-to-bar-process" href="#tree-to-bar">Slow Fermentation &amp; Roasting</a><a class="nav-link-anim w-fit font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="agroforestry-and-values" href="#agroforestry">Regenerative Agroforestry</a><a class="nav-link-anim w-fit font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="faq-and-wholesale" href="#faq-wholesale">Wholesale &amp; Culinary Guild</a><a class="nav-link-anim w-fit font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="inquire-and-order" href="#faq-wholesale">Corporate Tasting Inquiries</a></nav></div><div class="flex flex-col space-y-space-md"><span class="font-label-caps text-label-caps uppercase text-tertiary tracking-widest">Ancestral Provenance</span><div class="space-y-space-sm"><div class="p-space-sm bg-surface-container rounded-DEFAULT border border-outline-variant/30 flex items-start space-x-space-sm hover:border-primary/40 transition-colors"><span class="material-symbols-outlined text-primary text-title-lg mt-0.5">eco</span><div><p class="font-title-md text-title-md text-on-surface">Direct Trade Estate</p><p class="font-body-sm text-body-sm text-on-surface-variant">100% Single Origin Maayon Terroir</p></div></div><div class="p-space-sm bg-surface-container rounded-DEFAULT border border-outline-variant/30 flex items-start space-x-space-sm hover:border-tertiary/40 transition-colors"><span class="material-symbols-outlined text-tertiary text-title-lg mt-0.5">verified</span><div><p class="font-title-md text-title-md text-on-surface">Artisanal Visayan Craft</p><p class="font-body-sm text-body-sm text-on-surface-variant">Philippine Craft Cacao Registry</p></div></div></div><div class="pt-space-xs"><p class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-space-xs">Connect With The Estate</p><div class="flex items-center space-x-space-md text-on-surface-variant"><a class="hover:text-primary transition-transform duration-300 hover:scale-110" href="#"><span class="material-symbols-outlined">public</span></a><a class="hover:text-primary transition-transform duration-300 hover:scale-110" href="#"><span class="material-symbols-outlined">photo_camera</span></a><a class="hover:text-primary transition-transform duration-300 hover:scale-110" href="#"><span class="material-symbols-outlined">mail</span></a></div></div></div><div class="flex flex-col space-y-space-md"><span class="font-label-caps text-label-caps uppercase text-tertiary tracking-widest">The Tasting Journal</span><p class="font-body-sm text-body-sm text-on-surface-variant">Receive seasonal micro-batch allocations, harvest reports, and private cellar tasting invitations from Maayon.</p><form class="flex flex-col space-y-space-xs"><input class="w-full px-space-md py-space-sm bg-surface-container-low border border-outline-variant/50 rounded-DEFAULT text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none focus:border-tertiary focus:ring-1 focus:ring-tertiary transition-all" placeholder="Enter your culinary email" type="email"><button class="btn-luxury-shimmer w-full py-space-sm px-space-md bg-primary-container text-on-primary font-label-caps text-label-caps tracking-widest uppercase rounded-DEFAULT border border-tertiary/40 hover:bg-surface-container-high hover:text-tertiary hover:shadow-[0_0_15px_rgba(233,195,73,0.3)] transition-all duration-300 active:scale-98" type="button">Subscribe To Allocations</button></form><p class="font-body-sm text-body-sm text-outline-variant text-[11px]">Respecting your privacy. Harvest dispatch twice monthly.</p></div></div><div class="pt-space-lg flex flex-col md:flex-row items-center justify-between text-on-surface-variant font-body-sm text-body-sm gap-space-md"><p class="">© 2025 O'Guia Chocolates &amp; DAD's Farm. Maayon, Capiz, Philippines. All Rights Reserved.</p><div class="flex items-center space-x-space-lg text-label-caps font-label-caps tracking-wider uppercase text-on-surface-variant"><a class="hover:text-on-surface transition-colors" href="#">Terroir Traceability</a><a class="hover:text-on-surface transition-colors" href="#">Harvest Terms</a><a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a></div></div></div></footer>
+
+</body></html>
